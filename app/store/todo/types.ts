@@ -1,3 +1,5 @@
+import { ReduxStatus } from '../../interfaces';
+
 export const SET_TASKS = 'todo/setTasks';
 
 export const ADD_TASK_REQUEST = 'todo/addTaskRequest';
@@ -12,11 +14,6 @@ export const TOGGLE_TASK_REQUEST = 'todo/toggleTaskRequest';
 export const TOGGLE_TASK_SUCCESS = 'todo/toggleTaskSuccess';
 export const TOGGLE_TASK_FAILURE = 'todo/toggleTaskFailure';
 
-export type TasksStatus = {
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
-    error?: string | null;
-};
-
 export type Task = {
     id: number;
     text: string;
@@ -24,7 +21,7 @@ export type Task = {
 };
 
 export interface TodoState {
-    tasksStatus: TasksStatus;
+    tasksStatus: ReduxStatus;
     tasks: Task[];
     completed: number;
 }
