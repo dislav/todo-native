@@ -16,6 +16,7 @@ export const TOGGLE_TASK_FAILURE = 'todo/toggleTaskFailure';
 
 export type Task = {
     id: number;
+    listId: number;
     text: string;
     completed: boolean;
 };
@@ -35,7 +36,7 @@ interface SetTasksAction {
 // Add task
 interface AddTaskRequestAction {
     type: typeof ADD_TASK_REQUEST;
-    payload: string;
+    payload: Task;
 }
 
 interface AddTaskSuccessAction {

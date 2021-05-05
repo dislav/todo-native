@@ -5,18 +5,22 @@ import { RootState } from '../../store/rootReducer';
 import { Wrapper } from './TasksList.styled';
 import TaskItem from '../TaskItem/TaskItem';
 
-const mapStateToProps = ({ todo }: RootState) => ({ todo });
+const mapStateToProps = ({ todo }: RootState) => ({ tasks: todo.tasks });
 
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const TasksList: React.FC<PropsFromRedux> = ({ todo }) => {
-    console.log(todo);
+interface ITasksList {
+    listId?: number;
+}
+
+const TasksList: React.FC<ITasksList & PropsFromRedux> = ({ listId, tasks }) => {
+    const filterTasks = tasks.filter(({ listId: id }) => id === listId);
 
     return (
         <Wrapper>
-            {todo.tasks.map((task, index) => (
+            {filterTasks.map((task, index) => (
                 <TaskItem key={index} {...task} />
             ))}
         </Wrapper>

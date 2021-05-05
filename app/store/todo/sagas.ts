@@ -1,46 +1,37 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ADD_TASK_REQUEST, REMOVE_TASK_REQUEST, TOGGLE_TASK_REQUEST } from './types';
+import { Task, ADD_TASK_REQUEST, REMOVE_TASK_REQUEST, TOGGLE_TASK_REQUEST } from './types';
 import { addTaskSuccess, removeTaskSuccess, toggleTaskSuccess } from './actions';
+import { parseAsyncStorage } from '../../helpers/asyncStorage';
+import { addTaskList } from '../list/actions';
 
-const parseAsyncStorage = async (): Promise<string[]> => {
+function* addTaskAsync(action: { payload: Task }) {
     try {
-        const localState = await AsyncStorage.getItem('tasks');
-        if (localState !== null) return JSON.parse(localState);
-        return [];
-    } catch {
-        return [];
+        const localState: string[] = yield call(parseAsyncStorage, 'tasks');
+
+        yield call(AsyncStorage.setItem, 'tasks', JSON.stringify([...localState, action.payload]));
+        yield put(addTaskSuccess(action.payload));
+        yield put(addTaskList(action.payload.listId));
+    } catch (e) {
+        console.log(e);
     }
-};
-
-function* addTaskAsync(action: { payload: string }) {
-    try {
-        const localState: string[] = yield call(parseAsyncStorage);
-
-        const task = {
-            id: Date.now(),
-            text: action.payload,
-            completed: false,
-        };
-
-        yield call(AsyncStorage.setItem, 'tasks', JSON.stringify([...localState, task]));
-        yield put(addTaskSuccess(task));
-    } catch (e) {}
 }
 
 function* removeTaskAsync(action: { payload: number }) {
     try {
-        const localState: string[] = yield call(parseAsyncStorage);
+        const localState: Task[] = yield call(parseAsyncStorage, 'tasks');
         const tasks = localState.filter(({ id }) => id !== action.payload);
 
         yield call(AsyncStorage.setItem, 'tasks', JSON.stringify(tasks));
         yield put(removeTaskSuccess(action.payload));
-    } catch (e) {}
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 function* toggleTaskAsync(action: { payload: number }) {
     try {
-        const localState: string[] = yield call(parseAsyncStorage);
+        const localState: Task[] = yield call(parseAsyncStorage, 'tasks');
         const tasks = localState.map((task) => {
             if (task.id !== action.payload) return task;
             return {
@@ -51,7 +42,9 @@ function* toggleTaskAsync(action: { payload: number }) {
 
         yield call(AsyncStorage.setItem, 'tasks', JSON.stringify(tasks));
         yield put(toggleTaskSuccess(action.payload));
-    } catch (e) {}
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 export default function* todoSaga() {

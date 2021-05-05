@@ -5,14 +5,14 @@ import { Provider } from 'react-redux';
 
 import store from './app/store/store';
 import HomeScreen from './app/screens/HomeScreen';
-import CreateList from './app/screens/CreateListScreen';
+import ListScreen from './app/screens/ListScreen';
 
 export default function App() {
     return (
         <Provider store={store}>
             <NativeRouter>
                 <Route exact path="/" component={HomeScreen} />
-                <Route path="/create/:id" component={CreateList} />
+                <Route path="/list/:id" component={ListScreen} />
             </NativeRouter>
             <StatusBar style="auto" />
         </Provider>

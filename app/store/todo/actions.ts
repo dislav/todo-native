@@ -16,7 +16,7 @@ export const setTasks = (payload: Task[]): TodoActionTypes => ({
 });
 
 // Add task
-export const addTaskRequest = (payload: string): TodoActionTypes => ({
+export const addTaskRequest = (payload: Task): TodoActionTypes => ({
     type: ADD_TASK_REQUEST,
     payload,
 });

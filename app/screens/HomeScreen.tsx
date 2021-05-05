@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-// import TasksList from '../components/TasksList/TasksList';
-// import TaskForm from '../components/TaskForm/TaskForm';
 import Header from '../components/Header/Header';
+import Lists from '../components/Lists/Lists';
 import Footer from '../components/Footer/Footer';
 
 const Wrapper = styled.SafeAreaView`
@@ -15,9 +14,8 @@ const HomeScreen: React.FC = () => {
     return (
         <Wrapper>
             <Header />
+            <Lists />
             <Footer />
-            {/* <TasksList /> */}
-            {/* <TaskForm /> */}
         </Wrapper>
     );
 };

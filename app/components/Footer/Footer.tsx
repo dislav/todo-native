@@ -1,28 +1,24 @@
 import React, { useEffect } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
+import { useHistory } from 'react-router-native';
 import { Path } from 'react-native-svg';
 import { Container, Button, ButtonView, Icon, Text } from './Footer.styled';
 import { createListRequest } from '../../store/list/actions';
-import { RootState } from '../../store/rootReducer';
-
-const mapStateToProps = ({ list }: RootState) => ({ list });
 
 const mapDispatchToProps = {
     createListRequest,
 };
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const Footer: React.FC<PropsFromRedux> = ({ list, createListRequest }) => {
-    useEffect(() => {
-        console.log(list);
-    }, [list]);
+const Footer: React.FC<PropsFromRedux> = ({ createListRequest }) => {
+    const history = useHistory();
 
     return (
         <Container>
-            <Button onPress={createListRequest} activeOpacity={0.6} underlayColor="#FFFFFF">
+            <Button onPress={() => createListRequest(history)} activeOpacity={0.6} underlayColor="#FFFFFF">
                 <ButtonView>
                     <Icon viewBox="0 0 448 512">
                         <Path

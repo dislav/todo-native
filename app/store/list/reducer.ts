@@ -1,15 +1,23 @@
 import { combineReducers } from 'redux';
 import { ReduxStatus } from '../../interfaces';
 import {
-    List,
-    ListState,
-    ListActionType,
+    CREATE_LIST_FAILURE,
     CREATE_LIST_REQUEST,
     CREATE_LIST_SUCCESS,
-    CREATE_LIST_FAILURE,
+    List,
+    ListActionType,
+    ListState,
+    UPDATE_LIST_FAILURE,
+    UPDATE_LIST_REQUEST,
+    UPDATE_LIST_SUCCESS,
+    REMOVE_LIST_REQUEST,
+    REMOVE_LIST_SUCCESS,
+    REMOVE_LIST_FAILURE,
+    SET_LISTS,
+    ADD_TASK_LIST,
 } from './types';
 
-const initialState: ListState = {
+let initialState: ListState = {
     listStatus: {
         status: 'idle',
         error: null,
@@ -34,6 +42,36 @@ const listStatus = (state = initialState.listStatus, action: ListActionType): Re
                 ...state,
                 status: 'failed',
             };
+        case UPDATE_LIST_REQUEST:
+            return {
+                ...state,
+                status: 'loading',
+            };
+        case UPDATE_LIST_SUCCESS:
+            return {
+                ...state,
+                status: 'succeeded',
+            };
+        case UPDATE_LIST_FAILURE:
+            return {
+                status: 'failed',
+                error: action.payload,
+            };
+        case REMOVE_LIST_REQUEST:
+            return {
+                ...state,
+                status: 'loading',
+            };
+        case REMOVE_LIST_SUCCESS:
+            return {
+                ...state,
+                status: 'succeeded',
+            };
+        case REMOVE_LIST_FAILURE:
+            return {
+                status: 'failed',
+                error: action.payload,
+            };
         default:
             return state;
     }
@@ -41,8 +79,22 @@ const listStatus = (state = initialState.listStatus, action: ListActionType): Re
 
 const lists = (state = initialState.lists, action: ListActionType): List[] => {
     switch (action.type) {
+        case SET_LISTS:
+            return action.payload;
+        case ADD_TASK_LIST:
+            return state.map((list) => {
+                if (list.id === action.payload) return { ...list, tasksCount: list.tasksCount + 1 };
+                return list;
+            });
         case CREATE_LIST_SUCCESS:
             return [...state, action.payload];
+        case REMOVE_LIST_SUCCESS:
+            return state.filter(({ id }) => id !== action.payload.id);
+        case UPDATE_LIST_SUCCESS:
+            return state.map((list) => {
+                if (list.id === action.payload.id) return { ...list, title: action.payload.title };
+                return list;
+            });
         default:
             return state;
     }
