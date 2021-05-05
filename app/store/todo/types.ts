@@ -14,11 +14,16 @@ export const TOGGLE_TASK_REQUEST = 'todo/toggleTaskRequest';
 export const TOGGLE_TASK_SUCCESS = 'todo/toggleTaskSuccess';
 export const TOGGLE_TASK_FAILURE = 'todo/toggleTaskFailure';
 
+export const FAVORITE_TASK_REQUEST = 'todo/favoriteTaskRequest';
+export const FAVORITE_TASK_SUCCESS = 'todo/favoriteTaskSuccess';
+export const FAVORITE_TASK_FAILURE = 'todo/favoriteTaskFailure';
+
 export type Task = {
     id: number;
     listId: number;
     text: string;
     completed: boolean;
+    favorite: boolean;
 };
 
 export interface TodoState {
@@ -52,12 +57,12 @@ interface AddTaskFailureAction {
 // Remove task
 interface RemoveTaskRequestAction {
     type: typeof REMOVE_TASK_REQUEST;
-    payload: number;
+    payload: Task;
 }
 
 interface RemoveTaskSuccessAction {
     type: typeof REMOVE_TASK_SUCCESS;
-    payload: number;
+    payload: Task;
 }
 
 interface RemoveTaskFailureAction {
@@ -81,6 +86,22 @@ interface ToggleTaskFailureAction {
     payload: string;
 }
 
+// Favorite task
+interface FavoriteTaskRequestAction {
+    type: typeof FAVORITE_TASK_REQUEST;
+    payload: number;
+}
+
+interface FavoriteTaskSuccessAction {
+    type: typeof FAVORITE_TASK_SUCCESS;
+    payload: number;
+}
+
+interface FavoriteTaskFailureAction {
+    type: typeof FAVORITE_TASK_FAILURE;
+    payload: string;
+}
+
 export type TodoActionTypes =
     | SetTasksAction
     | AddTaskRequestAction
@@ -91,4 +112,7 @@ export type TodoActionTypes =
     | RemoveTaskFailureAction
     | ToggleTaskRequestAction
     | ToggleTaskSuccessAction
-    | ToggleTaskFailureAction;
+    | ToggleTaskFailureAction
+    | FavoriteTaskRequestAction
+    | FavoriteTaskSuccessAction
+    | FavoriteTaskFailureAction;

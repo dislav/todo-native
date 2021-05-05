@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-native';
 import { connect, ConnectedProps } from 'react-redux';
 import { Path } from 'react-native-svg';
-import { Container, Wrapper, Icon, Text, Remove, RemoveIcon } from './ListItem.styled';
+import { Container, Wrapper, Icon, Text, Count, Remove, RemoveIcon } from './ListItem.styled';
 import { List } from '../../store/list/types';
 import { removeListRequest } from '../../store/list/actions';
 
@@ -37,7 +37,7 @@ const ListItem: React.FC<List & PropsFromRedux> = ({ id, title, tasksCount, remo
                             />
                         </Icon>
                         <Text>{title}</Text>
-                        <Text>{tasksCount}</Text>
+                        {tasksCount > 0 && <Count>{tasksCount}</Count>}
                     </>
                 )}
             </Wrapper>

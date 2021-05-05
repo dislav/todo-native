@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
+import Svg from 'react-native-svg';
 
 interface ITaskItem {
-    isChecked?: boolean;
+  isChecked?: boolean;
 }
 
 export const Wrapper = styled.TouchableOpacity<ITaskItem>``;
@@ -11,7 +12,7 @@ export const TaskTouchable = styled.View`
   flex-direction: row;
   align-items: center;
   border-radius: 6px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   padding: 20px;
   margin-bottom: 4px;
 `;
@@ -24,6 +25,30 @@ export const TaskItemText = styled.Text<ITaskItem>`
   margin-left: 20px;
 `;
 
-export const TaskItemRemove = styled.Button`
+export const Remove = styled.Pressable`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const RemoveIcon = styled(Svg)`
+  width: 20px;
+  height: 20px;
+  color: red;
+  transform: rotate(-45deg);
+`;
+
+export const Favorite = styled.Pressable`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+`;
+
+export const FavoriteIcon = styled(Svg)`
+  width: 20px;
+  height: 20px;
   color: black;
 `;

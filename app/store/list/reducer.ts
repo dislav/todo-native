@@ -15,6 +15,7 @@ import {
     REMOVE_LIST_FAILURE,
     SET_LISTS,
     ADD_TASK_LIST,
+    REMOVE_TASK_LIST,
 } from './types';
 
 let initialState: ListState = {
@@ -82,8 +83,17 @@ const lists = (state = initialState.lists, action: ListActionType): List[] => {
         case SET_LISTS:
             return action.payload;
         case ADD_TASK_LIST:
-            return state.map((list) => {
+            return state.map(list => {
                 if (list.id === action.payload) return { ...list, tasksCount: list.tasksCount + 1 };
+                return list;
+            });
+        case REMOVE_TASK_LIST:
+            return state.map(list => {
+                console.log(list.id, action.payload);
+                if (list.id === action.payload) {
+                    console.log(list);
+                    return { ...list, tasksCount: list.tasksCount - 1 };
+                }
                 return list;
             });
         case CREATE_LIST_SUCCESS:

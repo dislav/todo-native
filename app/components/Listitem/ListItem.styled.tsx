@@ -5,7 +5,7 @@ export const Container = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 14px 20px;
+  padding: 16px 20px;
 `;
 
 export const Wrapper = styled.Pressable`
@@ -27,16 +27,25 @@ export const Text = styled.Text`
   color: black;
 `;
 
+export const Count = styled.Text`
+  font-size: 14px;
+  color: gray;
+  margin-left: auto;
+  margin-right: 14px;
+`;
+
 export const Remove = styled.Pressable`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 18px;
+  height: 18px;
 `;
 
 export const RemoveIcon = styled(Svg)`
-  width: 16px;
-  height: 16px;
+  width: 100%;
+  height: 100%;
   color: red;
   transform: rotate(-45deg);
 `;

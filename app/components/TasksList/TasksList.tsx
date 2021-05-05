@@ -12,19 +12,19 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 interface ITasksList {
-    listId?: number;
+  listId?: number;
 }
 
 const TasksList: React.FC<ITasksList & PropsFromRedux> = ({ listId, tasks }) => {
-    const filterTasks = tasks.filter(({ listId: id }) => id === listId);
+  const filterTasks = tasks.filter(({ listId: id }) => id === listId);
 
-    return (
-        <Wrapper>
-            {filterTasks.map((task, index) => (
-                <TaskItem key={index} {...task} />
-            ))}
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      {filterTasks.map((task, index) => (
+        <TaskItem key={index} {...task} />
+      ))}
+    </Wrapper>
+  );
 };
 
 export default connector(TasksList);

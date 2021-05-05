@@ -12,6 +12,7 @@ import {
     UPDATE_LIST_REQUEST,
     UPDATE_LIST_SUCCESS,
     ADD_TASK_LIST,
+    REMOVE_TASK_LIST,
 } from './types';
 
 export const setLists = (payload: List[]): ListActionType => ({
@@ -21,6 +22,11 @@ export const setLists = (payload: List[]): ListActionType => ({
 
 export const addTaskList = (payload: number): ListActionType => ({
     type: ADD_TASK_LIST,
+    payload,
+});
+
+export const removeTaskList = (payload: number): ListActionType => ({
+    type: REMOVE_TASK_LIST,
     payload,
 });
 

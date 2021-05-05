@@ -2,6 +2,7 @@ import { ReduxStatus } from '../../interfaces';
 
 export const SET_LISTS = 'list/setLists';
 export const ADD_TASK_LIST = 'list/addTaskList';
+export const REMOVE_TASK_LIST = 'list/removeTaskList';
 
 export const CREATE_LIST_REQUEST = 'list/createListRequest';
 export const CREATE_LIST_SUCCESS = 'list/createListSuccess';
@@ -33,6 +34,11 @@ interface SetListsAction {
 
 interface AddTaskListAction {
     type: typeof ADD_TASK_LIST;
+    payload: number;
+}
+
+interface RemoveTaskListAction {
+    type: typeof REMOVE_TASK_LIST;
     payload: number;
 }
 
@@ -87,6 +93,7 @@ interface UpdateListFailureAction {
 export type ListActionType =
     | SetListsAction
     | AddTaskListAction
+    | RemoveTaskListAction
     | CreateListRequestAction
     | CreateListSuccessAction
     | CreateListFailureAction
