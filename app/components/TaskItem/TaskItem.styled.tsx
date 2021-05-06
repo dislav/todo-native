@@ -23,6 +23,7 @@ export const TaskItemText = styled.Text<ITaskItem>`
   font-size: 16px;
   text-decoration: ${({ isChecked }) => (isChecked ? 'line-through' : 'none')};
   margin-left: 20px;
+  padding-right: 10px;
 `;
 
 export const Remove = styled.Pressable`

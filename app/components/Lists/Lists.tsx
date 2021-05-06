@@ -11,13 +11,13 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const Lists: React.FC<PropsFromRedux> = ({ lists }) => {
-    return (
-        <Container>
-            {lists.map((list) => (
-                <ListItem key={list.id} {...list} />
-            ))}
-        </Container>
-    );
+  return (
+    <Container>
+      {lists.map((list) => (
+        <ListItem key={list.id} {...list} />
+      ))}
+    </Container>
+  );
 };
 
 export default connector(Lists);

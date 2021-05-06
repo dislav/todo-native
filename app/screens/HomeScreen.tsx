@@ -6,18 +6,18 @@ import Lists from '../components/Lists/Lists';
 import Footer from '../components/Footer/Footer';
 
 const Wrapper = styled.SafeAreaView`
-    flex: 1;
-    background-color: #ffffff;
+  flex: 1;
+  background-color: #ffffff;
 `;
 
 const HomeScreen: React.FC = () => {
-    return (
-        <Wrapper>
-            <Header />
-            <Lists />
-            <Footer />
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Header />
+      <Lists />
+      <Footer />
+    </Wrapper>
+  );
 };
 
 export default HomeScreen;

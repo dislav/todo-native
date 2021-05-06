@@ -14,34 +14,34 @@ import {
   favoriteTaskSuccess,
 } from './actions';
 import { parseAsyncStorage } from '../../helpers/asyncStorage';
-import { addTaskList, removeTaskList } from '../list/actions';
+import { addTaskListRequest, removeTaskListRequest } from '../list/actions';
 
-function* addTaskAsync(action: { payload: Task }) {
+function* createTask(action: { payload: Task }) {
   try {
     const localState: string[] = yield call(parseAsyncStorage, 'tasks');
 
     yield call(AsyncStorage.setItem, 'tasks', JSON.stringify([...localState, action.payload]));
     yield put(addTaskSuccess(action.payload));
-    yield put(addTaskList(action.payload.listId));
+    yield put(addTaskListRequest(action.payload.listId));
   } catch (e) {
     console.log(e);
   }
 }
 
-function* removeTaskAsync(action: { payload: Task }) {
+function* removeTask(action: { payload: Task }) {
   try {
     const localState: Task[] = yield call(parseAsyncStorage, 'tasks');
     const tasks = localState.filter(({ id }) => id !== action.payload.id);
 
     yield call(AsyncStorage.setItem, 'tasks', JSON.stringify(tasks));
     yield put(removeTaskSuccess(action.payload));
-    yield put(removeTaskList(action.payload.listId));
+    yield put(removeTaskListRequest(action.payload.listId));
   } catch (e) {
     console.log(e);
   }
 }
 
-function* toggleTaskAsync(action: { payload: number }) {
+function* toggleTask(action: { payload: number }) {
   try {
     const localState: Task[] = yield call(parseAsyncStorage, 'tasks');
     const tasks = localState.map((task) => {
@@ -78,8 +78,8 @@ function* favoriteTask(action: { payload: number }) {
 }
 
 export default function* todoSaga() {
-  yield takeEvery(ADD_TASK_REQUEST, addTaskAsync);
-  yield takeEvery(REMOVE_TASK_REQUEST, removeTaskAsync);
-  yield takeEvery(TOGGLE_TASK_REQUEST, toggleTaskAsync);
+  yield takeEvery(ADD_TASK_REQUEST, createTask);
+  yield takeEvery(REMOVE_TASK_REQUEST, removeTask);
+  yield takeEvery(TOGGLE_TASK_REQUEST, toggleTask);
   yield takeEvery(FAVORITE_TASK_REQUEST, favoriteTask);
 }

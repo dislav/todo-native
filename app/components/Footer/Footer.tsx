@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router-native';
 import { Path } from 'react-native-svg';
