@@ -15,6 +15,7 @@ import {
 } from './actions';
 import { parseAsyncStorage } from '../../helpers/asyncStorage';
 import { addTaskListRequest, removeTaskListRequest } from '../list/actions';
+import { updateAchievementsRequest } from '../achievements/actions';
 
 function* createTask(action: { payload: Task }) {
   try {
@@ -51,6 +52,9 @@ function* toggleTask(action: { payload: number }) {
         completed: !task.completed,
       };
     });
+
+    const [findTask] = tasks.filter(({ id }) => id === action.payload);
+    if (findTask.completed) yield put(updateAchievementsRequest());
 
     yield call(AsyncStorage.setItem, 'tasks', JSON.stringify(tasks));
     yield put(toggleTaskSuccess(action.payload));
