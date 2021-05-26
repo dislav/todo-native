@@ -14,7 +14,7 @@ export const TaskTouchable = styled.View`
   border-radius: 6px;
   background-color: #f5f5f5;
   padding: 20px;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 `;
 
 export const TaskItemText = styled.Text<ITaskItem>`

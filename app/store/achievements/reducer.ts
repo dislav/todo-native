@@ -19,6 +19,7 @@ const initialState: AchievementsState = {
   text: '',
   count: 0,
   open: false,
+  list: [],
 };
 
 const achievementsStatus = (

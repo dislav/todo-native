@@ -5,10 +5,15 @@ import { updateAchievementsSuccess, closeAchievementsSuccess } from './actions';
 import { getAchievementEvents } from '../../helpers/achievements';
 
 const getAchievement = async (): Promise<Achievement> => {
-  const defaultAchievement = { text: '', count: 0, open: false };
+  const defaultAchievement: Achievement = { text: '', count: 0, open: false, list: [] };
   try {
     const achievement = await AsyncStorage.getItem('achievements');
-    if (achievement !== null) return JSON.parse(achievement);
+    if (achievement !== null)
+      return {
+        ...defaultAchievement,
+        ...JSON.parse(achievement),
+      };
+
     return defaultAchievement;
   } catch {
     return defaultAchievement;

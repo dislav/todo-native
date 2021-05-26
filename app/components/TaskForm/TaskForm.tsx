@@ -75,7 +75,7 @@ const TaskForm: React.FC<ITaskForm & PropsFromRedux> = ({ listId, addTaskRequest
               <ModalButtonText>Отмена</ModalButtonText>
             </Button>
             <Button onPress={onSubmit}>
-              <ModalButtonText>Ок</ModalButtonText>
+              <ModalButtonText>Создать</ModalButtonText>
             </Button>
           </ModalFooter>
         </ModalWrapper>

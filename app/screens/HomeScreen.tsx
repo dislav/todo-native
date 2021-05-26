@@ -5,9 +5,9 @@ import Header from '../components/Header/Header';
 import Lists from '../components/Lists/Lists';
 import Footer from '../components/Footer/Footer';
 
-const Wrapper = styled.SafeAreaView`
+const Wrapper = styled.View`
   flex: 1;
-  background-color: #ffffff;
+  padding: 40px 0;
 `;
 
 const HomeScreen: React.FC = () => {

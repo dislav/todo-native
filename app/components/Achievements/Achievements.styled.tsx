@@ -8,21 +8,21 @@ export const Container = styled.View`
   justify-content: center;
   max-width: 80%;
   background-color: white;
-  border: 1px solid gray;
-  border-radius: 14px;
-  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+  border-radius: 6px;
+  padding: 20px 32px;
   margin: auto;
 `;
 
 export const Text = styled.Text`
   text-align: center;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 `;
 
 export const Button = styled.Pressable`
   background-color: #f5f5f5;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 10px 20px;
 `;
 

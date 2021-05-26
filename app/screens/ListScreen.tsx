@@ -7,8 +7,9 @@ import ListTop from '../components/ListTop/ListTop';
 import TasksList from '../components/TasksList/TasksList';
 import TaskForm from '../components/TaskForm/TaskForm';
 
-const Container = styled.SafeAreaView`
+const Container = styled.View`
   flex: 1;
+  padding: 40px 0;
 `;
 
 const mapStateToProps = ({ list }: RootState) => ({ lists: list.lists });

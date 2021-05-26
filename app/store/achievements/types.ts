@@ -14,6 +14,7 @@ export interface Achievement {
   text: string;
   count: number;
   open: boolean;
+  list: string[];
 }
 
 export interface AchievementsState extends Achievement {

@@ -9,12 +9,15 @@ export const Input = styled.TextInput`
   border: 1px solid gray;
   font-size: 16px;
   line-height: 20px;
-  padding: 6px 12px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 32px;
 `;
 
-export const Button = styled.Pressable``;
+export const Button = styled.Pressable`
+  border-radius: 6px;
+  overflow: hidden;
+`;
 
 export const Modal = styled.Modal``;
 
@@ -24,15 +27,14 @@ export const ModalWrapper = styled.View`
   align-items: center;
   justify-content: center;
   background-color: white;
-  border: 1px solid gray;
-  border-radius: 14px;
-  padding: 16px 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+  border-radius: 6px;
+  padding: 20px 32px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
   margin: 50% auto auto;
 `;
 
 export const ModalText = styled.Text`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
 `;
@@ -47,7 +49,7 @@ export const ModalFooter = styled.View`
 
 export const ModalButtonText = styled.Text`
   font-size: 16px;
-  padding: 6px 10px;
+  padding: 8px 16px;
   background-color: #f5f5f5;
 `;
 

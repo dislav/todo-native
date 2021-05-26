@@ -23,16 +23,28 @@ export const ItemWrapper = styled.View`
 export const Icon = styled(Svg)`
   width: 24px;
   height: 24px;
-  color: black;
+  color: #2F9BFF;
   margin-right: 14px;
 `;
 
 export const Text = styled.Text`
+  color: #2F9BFF;
   font-size: 16px;
   font-weight: bold;
 `;
 
+export const Count = styled.View`
+  display: flex;
+  flex-direction: row;
+  min-width: 22px;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5F5F5;
+  border-radius: 100px;
+  padding: 2px 4px;
+  margin-left: auto;
+`;
+
 export const TextCount = styled.Text`
   font-size: 14px;
-  margin-left: auto;
 `;

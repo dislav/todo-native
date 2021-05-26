@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import TasksList from '../components/TasksList/TasksList';
 import BackButton from '../components/BackButton/BackButton';
+import AchievementsList from '../components/AchievementsList/AchievementsList';
 
 const Container = styled.View`
   flex: 1;
   padding: 40px 0;
 `;
 
-const FavoritesScreen = () => {
+const AchievementsScreen = () => {
   return (
     <Container>
       <BackButton url={'/'} />
-      <TasksList favorite />
+      <AchievementsList />
     </Container>
   );
 };
 
-export default FavoritesScreen;
+export default AchievementsScreen;

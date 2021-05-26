@@ -15,7 +15,6 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const Achievements: React.FC<PropsFromRedux> = ({ achievements, closeAchievementsRequest }) => {
-  console.log(achievements);
   return (
     <Modal animationType={'slide'} transparent={true} visible={achievements.open}>
       <Container>
